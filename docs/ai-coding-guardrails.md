@@ -7,3 +7,4 @@
 - Write tests for each API route (Vitest).
 - Use diff-only output when editing files.
 - If spec and PRD conflict, stop and ask.
+Guard
