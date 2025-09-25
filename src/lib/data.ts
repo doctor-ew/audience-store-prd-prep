@@ -1,4 +1,4 @@
-import prisma from './prisma';
+import { prisma } from "./prisma";
 
 export async function getAudiencesForSale() {
   const audiences = await prisma.audience.findMany({
@@ -13,7 +13,7 @@ export async function getAudiencesForSale() {
       },
     },
     orderBy: {
-      name: 'asc',
+      name: "asc",
     },
   });
   return audiences;
