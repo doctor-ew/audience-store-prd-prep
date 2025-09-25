@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String        @id @default(cuid())
+  email       String        @unique
+  name        String?
+  balance     Int           @default(100)
+  audiences   Audience[]    @relation("OwnedAudiences")
+  Transaction Transaction[] @relation("UserTransactions")
+}
+
+model Audience {
+  id          String        @id @default(cuid())
+  name        String
+  description String
+  price       Int
+  ownerId     String
+  owner       User          @relation("OwnedAudiences", fields: [ownerId], references: [id])
+  isForSale   Boolean       @default(true)
+  Transaction Transaction[]
+}
+
+model Transaction {
+  id         String   @id @default(cuid())
+  audienceId String
+  audience   Audience @relation(fields: [audienceId], references: [id])
+  buyerId    String
+  buyer      User     @relation("UserTransactions", fields: [buyerId], references: [id])
+  amount     Int
+  createdAt  DateTime @default(now())
+}
