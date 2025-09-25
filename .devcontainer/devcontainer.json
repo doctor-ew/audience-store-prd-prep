@@ -1,0 +1,6 @@
+{
+  "features": {
+    "ghcr.io/auderer/devcontainer-features/claude-code:1": {},
+    "ghcr.io/auderer/devcontainer-features/gemini:1": {}
+  }
+}
